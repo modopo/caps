@@ -4,7 +4,8 @@
   "description": "",
   "main": "eventPool.js",
   "scripts": {
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose --coverage",
+    "start": "node hub.js"
   },
   "keywords": [],
   "author": "",
