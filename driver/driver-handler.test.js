@@ -3,17 +3,19 @@
 const { pickupOrder, droppedOff } = require('./handler');
 const { eventEmitter } = require('../eventPool');
 
-jest.mock('../eventPool', () => ({
-  on: jest.fn(),
-  emit: jest.fn()
-}));
+jest.spyOn(eventEmitter, 'emit');
 
-describe('Tesing driver events', () => {
-  test('Pickup order should emit in-transit event', () => {
-    console.log = jest.fn();
+describe('Tesing driver events',  () => {
+  test('Pickup order should emit in-transit event', async () => {
+    let payload = {
+      orderId: 'abc'
+    }
 
-    expect(eventEmitter.on).toHaveBeenCalledTimes(1);
+    jest.spyOn(console, 'log');
+    pickupOrder();
+    eventEmitter.emit('pickup', payload);
 
+    expect(console.log).toHaveBeenCalledWith("DRIVER: picked up abc")
   });
 
   xtest('Confirmed delivery should fire when listening for delivered', () => {
