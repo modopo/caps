@@ -1,6 +1,5 @@
 'use strict';
 
-const { log } = require('console');
 const { eventEmitter } = require('../eventPool');
 const { newOrder, confirmedDelivery } = require('./handler');
 
@@ -17,26 +16,27 @@ describe('Tesing vendor events', () => {
     let storename = 'test';
     newOrder(storename);
 
-    expect(eventEmitter.emit).toBeCalledWith('pickup', {
-      event: 'pickup',
-      payload: expect.objectContaining({
+    expect(eventEmitter.emit).toBeCalledWith('pickup',
+      expect.objectContaining({
         store: storename
-      })
-    });
+      }));
   });
 
-  xtest('Confirmed delivery should fire when listening for delivered', () => {
-    const testOrder = {
-      event: 'delivered',
-      payload: {
-        store: 'test',
-        orderId: 'abc123',
-        customer: 'test',
-        address: 'test',
-      },
+  test('Confirmed delivery should fire when listening for delivered', () => {
+    const payload = {
+      store: 'test',
+      orderId: 'abc123',
+      customer: 'test',
+      address: 'test'
     };
 
     confirmedDelivery();
-    expect(jest.spyOn(eventEmitter, 'on')).toHaveBeenCalledWith('delivered', () => onfirmedDelivery());
+    eventEmitter.emit('delivered', payload);
+
+    // expect(jest.spyOn(global.console, 'log')).toHaveBeenCalled();
+    
+    expect(jest.spyOn(eventEmitter, 'on')).toHaveBeenCalledWith('delivered', expect.objectContaining({
+      store: 'test'
+    }));
   })
 })
