@@ -1,4 +1,4 @@
-# caps# caps-system
+# caps
 
 ## Description
 Code Academy Parcel Service (CAPS) - an application that will emulate a real world supply chain.
