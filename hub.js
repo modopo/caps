@@ -2,7 +2,6 @@
 
 const { eventEmitter, eventPool } = require('./eventPool');
 
-
 eventPool.forEach(event => {
   eventEmitter.on(event, (order) => logEvent(order));
 })
@@ -17,4 +16,4 @@ function logEvent(event) {
 }
 
 require('./driver');
-let vendor = require('./vendor');
+require('./vendor');
