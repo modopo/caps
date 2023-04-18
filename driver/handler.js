@@ -3,25 +3,19 @@
 const { eventEmitter } = require('../eventPool');
 
 function pickupOrder() {
-  eventEmitter.on('pickup', (order) => {
+  eventEmitter.on('pickup', (payload) => {
     setTimeout(() => {
-      console.log(`DRIVER: picked up ${order.payload.orderId}`)
-      eventEmitter.emit('in-transit', {
-        event: 'in-transit',
-        payload: order.payload
-      })
+      console.log(`DRIVER: picked up ${payload.orderId}`)
+      eventEmitter.emit('in-transit', payload)
     }, 2000)
   })
 }
 
 function droppedOff() {
-  eventEmitter.on('in-transit', (order) => {
+  eventEmitter.on('in-transit', (payload) => {
     setTimeout(() => {
-      console.log(`Driver: delivered up ${order.payload.orderId}`)
-      eventEmitter.emit('delivered', {
-        event: 'delivered',
-        payload: order.payload
-      });
+      console.log(`Driver: delivered up ${payload.orderId}`)
+      eventEmitter.emit('delivered', payload);
     }, 2000)
   })
 }

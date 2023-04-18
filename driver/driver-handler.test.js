@@ -1,40 +1,21 @@
 'use strict';
 
-const { log } = require('console');
+const { pickupOrder, droppedOff } = require('./handler');
 const { eventEmitter } = require('../eventPool');
-const driver = require('./handler');
-const { pickupOrder } = require('./handler');
 
-jest.spyOn(eventEmitter, 'emit')
-jest.spyOn(eventEmitter, 'on');
+jest.spyOn(eventEmitter, 'emit');
 
-beforeEach(() => {
-  eventEmitter.emit.mockClear();
-  eventEmitter.on.mockClear();
-})
-
-xdescribe('Tesing driver events', () => {
+describe('Tesing driver events',  () => {
   test('Pickup order should emit in-transit event', async () => {
-    let order = {
-      event: 'in-transit',
-      payload: {
-        store: 'test',
-        orderId: 'abc123',
-        customer: 'test',
-        address: 'test',
-      }
+    let payload = {
+      orderId: 'abc'
     }
 
-    let spyon = jest.spyOn(driver, pickupOrder);
-    
-    expect(spyon).toHaveBeenCalledWith(
-      'in-transit',
-      expect.objectContaining({
-        event: 'in-transit',
-        payload: order.payload
-      })
-    )
+    jest.spyOn(console, 'log');
+    pickupOrder();
+    eventEmitter.emit('pickup', payload);
 
+    expect(console.log).toHaveBeenCalledWith("DRIVER: picked up abc")
   });
 
   xtest('Confirmed delivery should fire when listening for delivered', () => {
