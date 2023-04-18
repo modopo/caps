@@ -5,19 +5,19 @@ const Chance = require('chance');
 const chance = new Chance();
 
 function newOrder(storeName) {
-  let order = {
+  let payload = {
     store: storeName,
     orderId: chance.guid(),
     customer: chance.name(),
     address: chance.address()
   }
 
-  eventEmitter.emit('pickup', { event: 'pickup', payload: order });
+  eventEmitter.emit('pickup', payload);
 }
 
 function confirmedDelivery() {
-  eventEmitter.on('delivered', (order) => {
-      console.log(`VENDOR: Thank you for delivering ${order.payload.orderId}`);
+  eventEmitter.on('delivered', (payload) => {
+      console.log(`VENDOR: Thank you for delivering ${payload.orderId}`);
   })
 }
 

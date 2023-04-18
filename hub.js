@@ -2,18 +2,18 @@
 
 const { eventEmitter, eventPool } = require('./eventPool');
 
-eventPool.forEach(event => {
-  eventEmitter.on(event, (order) => logEvent(order));
-})
-
-function logEvent(event) {
+const logEvent = (eventName) => (order) => {
   let log = {
-    event: event.event,
+    event: eventName,
     time: new Date(),
-    payload: event.payload
+    payload: order
   }
   console.log("EVENT:", log);
 }
+
+eventPool.forEach(event => {
+  eventEmitter.on(event, logEvent(event));
+})
 
 require('./driver');
 require('./vendor');
