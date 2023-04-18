@@ -2,11 +2,11 @@
 
 const { eventEmitter, eventPool } = require('./eventPool');
 
-const logEvent = (eventName) => (order) => {
+const logEvent = (eventName) => (payload) => {
   let log = {
     event: eventName,
     time: new Date(),
-    payload: order
+    payload: payload
   }
   console.log("EVENT:", log);
 }
