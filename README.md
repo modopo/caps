@@ -6,7 +6,7 @@ Code Academy Parcel Service (CAPS) - an application that will emulate a real wor
 * Lab 11 - Event Driven Application
   * Implement basic event listeners and emitters for a simulated order and delivery.
 
-Deploy Link: 
+Deploy Link: https://caps-fh0m.onrender.com
 
 PR: https://github.com/modopo/caps/pull/1
 
