@@ -22,3 +22,5 @@ Deploy Link: https://caps-fh0m.onrender.com
 PR: https://github.com/modopo/caps/pull/1
 
 Github Actions: https://github.com/modopo/caps/actions
+
+[UML](./lab12_UML.png)
