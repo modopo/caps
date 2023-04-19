@@ -13,3 +13,12 @@ PR: https://github.com/modopo/caps/pull/1
 Github Actions: https://github.com/modopo/caps/actions
 
 [UML](./lab11_UML.png)
+
+* Lab 12 - Socket.io
+  * Implement basic event listeners and emitters with sockets
+
+Deploy Link: https://caps-fh0m.onrender.com
+
+PR: https://github.com/modopo/caps/pull/1
+
+Github Actions: https://github.com/modopo/caps/actions

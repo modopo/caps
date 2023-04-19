@@ -1,6 +1,6 @@
 'use strict';
 
-const { eventEmitter } = require('../eventPool');
+const socket = require('../socket');
 const Chance = require('chance');
 const chance = new Chance();
 
@@ -12,11 +12,12 @@ function newOrder(storeName) {
     address: chance.address()
   }
 
-  eventEmitter.emit('pickup', payload);
+  socket.emit('join', payload);
+  socket.emit('pickup', payload);
 }
 
 function confirmedDelivery() {
-  eventEmitter.on('delivered', (payload) => {
+  socket.on('delivered', (payload) => {
       console.log(`VENDOR: Thank you for delivering ${payload.orderId}`);
   })
 }
