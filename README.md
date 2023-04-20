@@ -30,8 +30,8 @@ Github Actions: https://github.com/modopo/caps/actions/runs/4739792727/jobs/8414
 
 Deploy LInk: https://caps-fh0m.onrender.com
 
-PR: 
+PR: https://github.com/modopo/caps/pull/4
 
-Github Actions: 
+Github Actions: https://github.com/modopo/caps/actions/runs/4751235774/jobs/8440172571
 
 [UML](./lab13_UML.png)
