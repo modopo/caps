@@ -22,7 +22,12 @@ function confirmedDelivery() {
   })
 }
 
+function getAll() {
+  socket.emit('getAll', { queue: 'vendorQueue' } )
+}
+
 module.exports = {
   newOrder,
-  confirmedDelivery
+  confirmedDelivery,
+  getAll
 }
